@@ -1,0 +1,25 @@
+Use products with 10 or more reviews only. Products with fewer than 10 reviews are used for training sentiment.
+
+spark = pyspark.sql.SparkSession.builder.getOrCreate()
+df = spark.read.csv('./data/amazon_reviews_us_Electronics_v1_00.tsv', header='true', inferSchema='true', sep='\t')
+df.createOrReplaceTempView("reviews")
+query = \
+"\
+SELECT marketplace, customer_id, review_id, product_id, pp.product_parent, product_title, product_category, star_rating, helpful_votes, total_votes, vine, verified_purchase, review_headline, review_body, review_date\
+ FROM reviews, (SELECT product_parent\
+ FROM reviews\
+ GROUP BY product_parent\
+ HAVING count(review_body) >= 10) pp\
+ WHERE reviews.product_parent = pp.product_parent\
+"
+spark.sql(query).write.parquet("data/product_w_10_or_more_reviews.parquet")
+query = \
+"\
+SELECT marketplace, customer_id, review_id, product_id, pp.product_parent, product_title, product_category, star_rating, helpful_votes, total_votes, vine, verified_purchase, review_headline, review_body, review_date\
+ FROM reviews, (SELECT product_parent\
+ FROM reviews\
+ GROUP BY product_parent\
+ HAVING count(review_body) < 10) pp\
+ WHERE reviews.product_parent = pp.product_parent\
+"
+spark.sql(query).write.parquet("data/product_w_fewer_than_10_reviews.parquet")
