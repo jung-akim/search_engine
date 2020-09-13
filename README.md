@@ -1,4 +1,4 @@
-## Project 5 Proposal by Jung-a Kim
+## Review-based Search Engine
 ### Background
 Since COVID-19, e-commerce market value has risen by dramatically and the companies are more competitive in satisfying customer's needs.
 One of the keys in determining the purchase is the reviews. According to BrightLocal's Local Consumer Review Survey 2014, 88% of consumers say they trust online reviews as much as personal recommendations and the average consumer reads 10 reviews before feeling able to trust a business<br>
@@ -16,6 +16,34 @@ Dataset download instruction and description is in this [link](https://s3.amazon
 
 ### Tools
 tensorflow_hub has Universal Sentence Encoding which is a context-based sentence embedding that uses transformers. USE is developed by google in 2018 which can be used for text similarity, sentiment analysis, etc. For summarization, PEGASUS - Reddit_TIFU was used.
+
+### Notebooks
+1. [train_sentiment.ipynb](train_sentiment.ipynb)<br>
+Trains a neural network model for sentiment analysis using Universal Sentence Encoder embeddings. Each embedding is a 512-dimensional vector representation of a product's review. The product reviews used for this training contains fewer than 10 reviews. The products with 10 or more reviews are used for the search engine.
+2. [train_summarizer.ipynb](train_summarizer.ipynb)<br>
+Compares candidate models for summarization of reviews. There are 5 candidate models: BART trained with CNN dataset, DISTILBART - CNN, BART with XSUM(BBC) articles, DISTILBART - XSUM, and PEGASUS trained with Reddit_TIFU. These models are capable of abstractive summarization.
+3. [USE_PEGASUS.ipynb](USE_PEGASUS.ipynb)<br>
+Using the sentiment analysis model and custom-made (weighted) similarity matrix, "Positive Similarity score" is computed for each product, and the products with the highest scores are selected to be shown to the user. Positive Similarity score is a measurement of how strongly reviews of a product contain positive sentiment and relevancy to the user's query. The output products are shown with the reviews that are similar to the user's query. Some long reviews are summarized into fewer sentences using the summarizer model.
+
+### Directories
+1. Datasets<br>
+[data](data) contains a raw tsv dataset, pickled datasets(products with 10 or more reviews and products with fewer than 10 reviews), and parquet file written by pyspark.
+(The data folder is empty in this repository due to its size. If you want to run this repository, please contact me.)
+2. Model<br>
+[model](model) contains the keras model trained for sentiment analysis.
+(The model folder is empty in this repository due to its size. If you want to run this repository, please contact me.)
+3. Search Engine App<br>
+[search_engine_app](search_engine_app) contains the HTML, CSS, javascript file for implementing Flask app.
+4. Models<br>
+[train_sentiment](train_sentiment) contains the train-test split datasets.
+(The train_sentiment folder is empty in this repository due to its size. If you want to run this repository, please contact me.)
+5. Universal Sentence Encoder<br>
+[use](use) contains the downloaded USE embedder. It can be downloaded directly from tensorflow_hub link without having to download it.
+(The use folder is empty in this repository due to its size. If you want to run this repository, please contact me.)
+
+### Python scripts
+[utils.py](utils.py)<br>
+Inlcudes helper functions to compute the custom-made positive similarity scores.
 
 ### References
 - Universal Sentence Encoder, Daniel Cer and Yinfei Yang and Sheng-yi Kong and Nan Hua and Nicole Limtiaco and Rhomni St. John and Noah Constant and Mario Guajardo-Cespedes and Steve Yuan and Chris Tar and Yun-Hsuan Sung and Brian Strope and Ray Kurzweil, 2018, arXiv:1803.11175
