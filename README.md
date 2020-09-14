@@ -22,7 +22,7 @@ tensorflow_hub has Universal Sentence Encoding which is a context-based sentence
 Trains a neural network model for sentiment analysis using Universal Sentence Encoder embeddings. Each embedding is a 512-dimensional vector representation of a product's review. The product reviews used for this training contains fewer than 10 reviews. The products with 10 or more reviews are used for the search engine.
 2. [train_summarizer.ipynb](train_summarizer.ipynb)<br>
 Compares candidate models for summarization of reviews. There are 5 candidate models: BART trained with CNN dataset, DISTILBART - CNN, BART with XSUM(BBC) articles, DISTILBART - XSUM, and PEGASUS trained with Reddit_TIFU. These models are capable of abstractive summarization.
-3. [USE_PEGASUS.ipynb](USE_PEGASUS.ipynb)<br>
+3. [search_engine.ipynb](search_engine.ipynb)<br>
 Using the sentiment analysis model and custom-made (weighted) similarity matrix, "Positive Similarity score" is computed for each product, and the products with the highest scores are selected to be shown to the user. Positive Similarity score is a measurement of how strongly reviews of a product contain positive sentiment and relevancy to the user's query. The output products are shown with the reviews that are similar to the user's query. Some long reviews are summarized into fewer sentences using the summarizer model.
 
 ### Directories
@@ -49,6 +49,7 @@ Inlcudes helper functions to compute the custom-made positive similarity scores.
 - Universal Sentence Encoder, Daniel Cer and Yinfei Yang and Sheng-yi Kong and Nan Hua and Nicole Limtiaco and Rhomni St. John and Noah Constant and Mario Guajardo-Cespedes and Steve Yuan and Chris Tar and Yun-Hsuan Sung and Brian Strope and Ray Kurzweil, 2018, arXiv:1803.11175
 - PEGASUS: Pre-training with Extracted Gap-sentences for Abstractive Summarization, Jingqing Zhang and Yao Zhao and Mohammad Saleh and Peter J. Liu, 2019, arXiv:1912.08777
 - Sentiment Analysis with Tensorflow 2 and Keras using Python, Curiously, 2019, https://www.curiousily.com/posts/sentiment-analysis-with-tensorflow-2-and-keras-using-python/
+- When Not to Choose the Best NLP Model, DEEP LEARNING, FLOYDHUB, 2019, https://blog.floydhub.com/when-the-best-nlp-model-is-not-the-best-choice/
 - Hugging Face datasets, https://huggingface.co/models?filter=summarization
 - TransformerSum documentation, https://transformersum.readthedocs.io/en/latest/general/about.html#extractive-vs-abstractive-summarization
 - Comparison of different Word Embeddings on Text Similarity - A use case in NLP, Intellica.AI, 2019, https://medium.com/@Intellica.AI/comparison-of-different-word-embeddings-on-text-similarity-a-use-case-in-nlp-e83e08469c1c
