@@ -24,6 +24,8 @@ Trains a neural network model for sentiment analysis using Universal Sentence En
 Compares candidate models for summarization of reviews. There are 5 candidate models: BART trained with CNN dataset, DISTILBART - CNN, BART with XSUM(BBC) articles, DISTILBART - XSUM, and PEGASUS trained with Reddit_TIFU. These models are capable of abstractive summarization.
 3. [search_engine.ipynb](search_engine.ipynb)<br>
 Using the sentiment analysis model and custom-made (weighted) similarity matrix, "Positive Similarity score" is computed for each product, and the products with the highest scores are selected to be shown to the user. Positive Similarity score is a measurement of how strongly reviews of a product contain positive sentiment and relevancy to the user's query. The output products are shown with the reviews that are similar to the user's query. Some long reviews are summarized into fewer sentences using the summarizer model.
+4. [utils.py](utils.py)<br>
+Inlcudes helper functions to compute the custom-made positive similarity scores.
 
 ### Directories
 1. Datasets<br>
@@ -40,10 +42,6 @@ Using the sentiment analysis model and custom-made (weighted) similarity matrix,
 5. Universal Sentence Encoder<br>
 [use](use) contains the downloaded USE embedder. It can be downloaded directly from tensorflow_hub link without having to download it.
 (The use folder is empty in this repository due to its size. If you want to run this repository, please contact me.)
-
-### Python scripts
-[utils.py](utils.py)<br>
-Inlcudes helper functions to compute the custom-made positive similarity scores.
 
 ### References
 - Universal Sentence Encoder, Daniel Cer and Yinfei Yang and Sheng-yi Kong and Nan Hua and Nicole Limtiaco and Rhomni St. John and Noah Constant and Mario Guajardo-Cespedes and Steve Yuan and Chris Tar and Yun-Hsuan Sung and Brian Strope and Ray Kurzweil, 2018, arXiv:1803.11175
