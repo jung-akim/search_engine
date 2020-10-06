@@ -20,6 +20,8 @@ import nltk
 # nltk.download('wordnet')
 from nltk.tokenize import sent_tokenize
 
+product_embeddings = pd.read_pickle('data/product_embeds.pkl') # Run google colab GPU to get the embeddings of all unique products in the dataset
+
 def euclidean_similarity(embed1, embed2):
     distance_matrix = euclidean_distances(embed1, embed2)
     similarity_matrix = 1 - distance_matrix/np.max(distance_matrix)
