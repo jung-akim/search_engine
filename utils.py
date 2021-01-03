@@ -84,7 +84,7 @@ def sentimental_similarity_score_of_a_review(review, query, sentiment = 'positiv
     review(str): review
     query(str): query
     sentiment(str): If not 'negative', it's considered as 'positive'. 'positive' is the default.
-    emphasized_keywords(list): list of keywords to be emphasized (currently 1: 0.01)
+    emphasized_keywords(list): list of keywords to be emphasized (currently 9: 1)
     euclidean(bool): whether to use euclidean distance for similarity matrix.
     
     returns:
