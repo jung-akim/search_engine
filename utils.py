@@ -29,7 +29,7 @@ def euclidean_similarity(embed1, embed2):
 
 def get_sentiment_scores(review, sentiment = 'positive'):
     """
-    Returns sentiment scores for each sentence in one review and embeddings of review sentences
+    Returns sentiment scores for each sentence in one review and embeddings of the sentences
     
     args:
     review(str): review to have sentiment scores
